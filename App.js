@@ -6,8 +6,8 @@ import RegistrationScreen from './src/PostsScreen/RegistrationScreen';
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <RegistrationScreen /> */}
-      <LoginScreen/>
+      <RegistrationScreen />
+      {/* <LoginScreen/> */}
     </View>
   );
 }

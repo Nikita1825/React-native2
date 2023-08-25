@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -6,9 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+
 
 export default function LoginScreen() {
+
+    
+    const [isEmailFocused, setIsEmailFocused] = useState(false);
+    const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    
   return (
     <ImageBackground
       style={styles.container}
@@ -16,9 +23,30 @@ export default function LoginScreen() {
     >
       <View style={styles.form}>
         <Text style={styles.Hform}>Увійти</Text>
-        
-        <TextInput placeholder="Адреса електронної пошти" style={styles.inp} />
-        <TextInput placeholder="Пароль" style={styles.inp} />
+
+        <TextInput
+          placeholder="Адреса електронної пошти"
+          style={[styles.inp, isEmailFocused && styles.focusedInput]}
+          onFocus={() => setIsEmailFocused(true)}
+          onBlur={() => setIsEmailFocused(false)}
+        />
+        <TextInput
+          placeholder="Пароль"
+          style={[styles.inp, isPasswordFocused && styles.focusedInput]}
+          onFocus={() => setIsPasswordFocused(true)}
+          onBlur={() => setIsPasswordFocused(false)}
+          secureTextEntry={!showPassword}
+        />
+        <View style={styles.showPassword}>
+          <TouchableOpacity
+            style={styles.showbtn}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Text style={styles.ItemText}>
+              {showPassword ? "Сховати" : "Показати"}
+            </Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Зареєстуватися</Text>
         </TouchableOpacity>
@@ -55,8 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingBottom: 45,
     borderTopLeftRadius: 25,
-      borderTopRightRadius: 25,
-    paddingTop:45
+    borderTopRightRadius: 25,
+    paddingTop: 45,
   },
   btn: {
     backgroundColor: "#FF6C00",
@@ -75,8 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 33,
     fontSize: 30,
     lineHeight: 36.16,
-      color: "black",
-    
+    color: "black",
   },
   avatar: {
     backgroundColor: "#F6F6F6",
@@ -91,5 +118,19 @@ const styles = StyleSheet.create({
     right: -12,
     bottom: 14,
     color: "#FF6C00",
+  },
+  focusedInput: {
+    borderColor: "#FF6C00",
+    backgroundColor: "#FFFFFF",
+  },
+  showPassword: {
+    position: "relative",
+    left: 140,
+    bottom: 47,
+  },
+  ItemText: {
+    fontSize: 16,
+    color: "#1B4371",
+    lineHeight: 18.75,
   },
 });

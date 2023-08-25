@@ -1,7 +1,16 @@
 import {  ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; 
+import { useState } from "react";
 
 export default function RegistrationScreen() {
+
+  const [isLoginFocused, setIsLoginFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+
+
     return (
       <ImageBackground
         style={styles.container}
@@ -17,13 +26,33 @@ export default function RegistrationScreen() {
             />
           </View>
           <Text style={styles.Hform}>Реєстрація</Text>
-          <TextInput placeholder="Логін"  style={styles.inp} />
+          <TextInput
+            placeholder="Логін"
+            style={[styles.inp, isLoginFocused && styles.focusedInput]}
+            onFocus={() => setIsLoginFocused(true)}
+            onBlur={() => setIsLoginFocused(false)}
+          />
           <TextInput
             placeholder="Адреса електронної пошти"
-            
-            style={styles.inp}
+            style={[styles.inp, isEmailFocused && styles.focusedInput]}
+            onFocus={() => setIsEmailFocused(true)}
+            onBlur={() => setIsEmailFocused(false)}
           />
-          <TextInput placeholder="Пароль"  style={styles.inp} />
+          <TextInput
+            placeholder="Пароль"
+            style={[styles.inp, isPasswordFocused && styles.focusedInput]}
+            onFocus={() => setIsPasswordFocused(true)}
+            onBlur={() => setIsPasswordFocused(false)}
+            secureTextEntry={!showPassword}
+          />
+          <View style={styles.showPassword}>
+            <TouchableOpacity
+              style={styles.showbtn}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              <Text style={styles.ItemText}>{showPassword ? "Сховати" : "Показати"}</Text>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity style={styles.btn}>
             <Text style={styles.btnText}>Зареєстуватися</Text>
           </TouchableOpacity>
@@ -51,6 +80,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "rgba(246, 246, 246, 1)",
   },
+  focusedInput: {
+    borderColor: "#FF6C00",
+    backgroundColor: "#FFFFFF",
+  },
   form: {
     justifyContent: "center",
     alignItems: "center",
@@ -71,7 +104,6 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 16,
     marginTop: 27,
-    
   },
   btnText: {
     color: "white",
@@ -95,5 +127,15 @@ const styles = StyleSheet.create({
     right: -12,
     bottom: 14,
     color: "#FF6C00",
+  },
+  showPassword: {
+    position: "relative",
+    left: 140,
+    bottom: 47,
+  },
+  ItemText: {
+    fontSize: 16,
+    color: "#1B4371",
+    lineHeight:18.75
   },
 });
