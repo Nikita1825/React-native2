@@ -1,13 +1,13 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/PostsScreen/LoginScreen';
-import RegistrationScreen from './src/PostsScreen/RegistrationScreen';
+import LoginScreen from './src/Screens/LoginScreen';
+import RegistrationScreen from './src/Screens/RegistrationScreen';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <RegistrationScreen />
-      {/* <LoginScreen/> */}
+      {/* <RegistrationScreen /> */}
+      <LoginScreen/>
     </View>
   );
 }

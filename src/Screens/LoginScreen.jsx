@@ -6,21 +6,40 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 
 
 export default function LoginScreen() {
+   const [login, setLogin] = useState("");
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
 
     
     const [isEmailFocused, setIsEmailFocused] = useState(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+    const handleRegistration = () => {
+      const form = {
+        
+        email,
+        password,
+      };
+     
+      setEmail("");
+      setPassword("");
+      console.log(form);
+    };
     
-  return (
+  return (  
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    
     <ImageBackground
       style={styles.container}
       source={require("../assets/Bg.jpg")}
-    >
+      >
       <View style={styles.form}>
         <Text style={styles.Hform}>Увійти</Text>
 
@@ -29,25 +48,29 @@ export default function LoginScreen() {
           style={[styles.inp, isEmailFocused && styles.focusedInput]}
           onFocus={() => setIsEmailFocused(true)}
           onBlur={() => setIsEmailFocused(false)}
-        />
+          onChangeText={setEmail}
+          value={email}
+          />
         <TextInput
           placeholder="Пароль"
           style={[styles.inp, isPasswordFocused && styles.focusedInput]}
           onFocus={() => setIsPasswordFocused(true)}
           onBlur={() => setIsPasswordFocused(false)}
           secureTextEntry={!showPassword}
-        />
+          onChangeText={setPassword}
+          value={password}
+          />
         <View style={styles.showPassword}>
           <TouchableOpacity
             style={styles.showbtn}
             onPress={() => setShowPassword(!showPassword)}
-          >
+            >
             <Text style={styles.ItemText}>
               {showPassword ? "Сховати" : "Показати"}
             </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={handleRegistration}>
           <Text style={styles.btnText}>Зареєстуватися</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Item}>
@@ -55,6 +78,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
     </ImageBackground>
+            </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({
