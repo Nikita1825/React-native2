@@ -7,7 +7,8 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
- 
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; 
 import { useState } from "react";
@@ -18,7 +19,9 @@ export default function RegistrationScreen() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
 
-  const [isFocused, setIsFocused] = useState(false);
+    const [isLoginFocused, setIsLoginFocused] = useState(false);
+    const [isEmailFocused, setIsEmailFocused] = useState(false);
+    const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleRegistration = () =>{
@@ -36,7 +39,10 @@ export default function RegistrationScreen() {
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-       
+        <KeyboardAvoidingView style={styles.wraper}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -130}
+        >
           <ImageBackground
             style={styles.container}
             source={require("../assets/Bg.jpg")}
@@ -54,24 +60,25 @@ export default function RegistrationScreen() {
 
               <TextInput
                 placeholder="Логін"
-                style={[styles.inp, isFocused && styles.focusedInput]}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                style={[styles.inp, isLoginFocused && styles.focusedInput]}
+                onFocus={() => setIsLoginFocused(true)}
+                onBlur={() => setIsLoginFocused(false)}
                 onChangeText={setLogin}
                 value={login}
               />
               <TextInput
                 placeholder="Адреса електронної пошти"
-                style={[styles.inp, isFocused && styles.focusedInput]}
-                onFocus={() => setIsFocused(true)}
+                style={[styles.inp, isEmailFocused && styles.focusedInput]}
+                onFocus={() => setIsEmailFocused(true)}
+                onBlur={() => setIsEmailFocused(false)}
                 onChangeText={setEmail}
                 value={email}
               />
               <TextInput
                 placeholder="Пароль"
-                style={[styles.inp, isFocused && styles.focusedInput]}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                style={[styles.inp, isPasswordFocused && styles.focusedInput]}
+                onFocus={() => setIsPasswordFocused(true)}
+                onBlur={() => setIsPasswordFocused(false)}
                 secureTextEntry={!showPassword}
                 onChangeText={setPassword}
                 value={password}
@@ -94,7 +101,7 @@ export default function RegistrationScreen() {
               </TouchableOpacity>
             </View>
           </ImageBackground>
-       
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     );
 }
@@ -104,6 +111,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  wraper: {
+    flex:1
+  },
+ 
   inp: {
     width: "100%",
     height: 50,

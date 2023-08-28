@@ -8,6 +8,8 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 
 
@@ -35,6 +37,11 @@ export default function LoginScreen() {
     
   return (  
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+       <KeyboardAvoidingView style={styles.wraper}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -130}
+      >
+        
     
     <ImageBackground
       style={styles.container}
@@ -78,6 +85,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
     </ImageBackground>
+              </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
   );
 }
@@ -86,6 +94,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+  },
+  wraper: {
+    flex: 1,
   },
   inp: {
     width: "100%",
