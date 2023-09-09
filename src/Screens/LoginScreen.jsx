@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
   ImageBackground,
@@ -32,61 +33,65 @@ export default function LoginScreen() {
      
       setEmail("");
       setPassword("");
+      navigation.navigate("Home");
       console.log(form);
-    };
+  };
+  const navigation = useNavigation();
     
-  return (  
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-       <KeyboardAvoidingView style={styles.wraper}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -130}
+      <KeyboardAvoidingView
+        style={styles.wraper}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -130}
       >
-        
-    
-    <ImageBackground
-      style={styles.container}
-      source={require("../assets/Bg.jpg")}
-      >
-      <View style={styles.form}>
-        <Text style={styles.Hform}>Увійти</Text>
+        <ImageBackground
+          style={styles.container}
+          source={require("../assets/Bg.jpg")}
+        >
+          <View style={styles.form}>
+            <Text style={styles.Hform}>Увійти</Text>
 
-        <TextInput
-          placeholder="Адреса електронної пошти"
-          style={[styles.inp, isEmailFocused && styles.focusedInput]}
-          onFocus={() => setIsEmailFocused(true)}
-          onBlur={() => setIsEmailFocused(false)}
-          onChangeText={setEmail}
-          value={email}
-          />
-        <TextInput
-          placeholder="Пароль"
-          style={[styles.inp, isPasswordFocused && styles.focusedInput]}
-          onFocus={() => setIsPasswordFocused(true)}
-          onBlur={() => setIsPasswordFocused(false)}
-          secureTextEntry={!showPassword}
-          onChangeText={setPassword}
-          value={password}
-          />
-        <View style={styles.showPassword}>
-          <TouchableOpacity
-            style={styles.showbtn}
-            onPress={() => setShowPassword(!showPassword)}
+            <TextInput
+              placeholder="Адреса електронної пошти"
+              style={[styles.inp, isEmailFocused && styles.focusedInput]}
+              onFocus={() => setIsEmailFocused(true)}
+              onBlur={() => setIsEmailFocused(false)}
+              onChangeText={setEmail}
+              value={email}
+            />
+            <TextInput
+              placeholder="Пароль"
+              style={[styles.inp, isPasswordFocused && styles.focusedInput]}
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+              secureTextEntry={!showPassword}
+              onChangeText={setPassword}
+              value={password}
+            />
+            <View style={styles.showPassword}>
+              <TouchableOpacity
+                style={styles.showbtn}
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                <Text style={styles.ItemText}>
+                  {showPassword ? "Сховати" : "Показати"}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.btn} onPress={handleRegistration}>
+              <Text style={styles.btnText}>Зареєстуватися</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.Item}
+              onPress={() => navigation.navigate("Registration")}
             >
-            <Text style={styles.ItemText}>
-              {showPassword ? "Сховати" : "Показати"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.btn} onPress={handleRegistration}>
-          <Text style={styles.btnText}>Зареєстуватися</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.Item}>
-          <Text style={styles.ItemText}>Вже є акаунт? Увійти</Text>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
-              </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
+              <Text style={styles.ItemText}>Зареєструватися</Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({

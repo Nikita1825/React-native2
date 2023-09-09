@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; 
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegistrationScreen() {
 
@@ -31,17 +32,19 @@ export default function RegistrationScreen() {
     setLogin('');
     setEmail('');
     setPassword('');
+    navigation.navigate("Home");
     console.log(form)
 }
 
- 
+  const navigation = useNavigation();
 
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView style={styles.wraper}
+        <KeyboardAvoidingView
+          style={styles.wraper}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -130}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -300}
         >
           <ImageBackground
             style={styles.container}
@@ -96,7 +99,10 @@ export default function RegistrationScreen() {
               <TouchableOpacity style={styles.btn} onPress={handleRegistration}>
                 <Text style={styles.btnText}>Зареєстуватися</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.Item}>
+              <TouchableOpacity
+                style={styles.Item}
+                onPress={() => navigation.navigate("Login")}
+              >
                 <Text style={styles.ItemText}>Вже є акаунт? Увійти</Text>
               </TouchableOpacity>
             </View>
