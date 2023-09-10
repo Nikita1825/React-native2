@@ -16,28 +16,28 @@ import { AntDesign } from "@expo/vector-icons";
 const DATA = [
   {
     id: "1",
-    // uri: require("../assets/Bg.jpg "),
+    uri: "https://www.dogalize.com/wp-content/uploads/2017/05/funny-cat-img.jpg",
     title: "Ліс",
     comments: [],
     like: "0",
     location: `Ukraine`,
   },
-//   {
-//     id: "2",
-//     // uri: "http://schemas.android.com/apk/res/android",
-//     title: "Захід на Чорному морі",
-//     comments: [],
-//     like: "0",
-//     location: `Ukraine`,
-//   },
-//   {
-//     id: "3",
-//     // uri: "https://s3-alpha-sig.figma.com/img/5e97/0c74/9cd3abbfbe6ba44f66a368baac9c2839?Expires=1693785600&Signature=jpqORqlTSyx8sqlPrN8iUo4fDbxeGdwpGXvh6-xefxfkl3ZCUnA6P62f~YZTT1SZNo6fNjyaBP3XD~0GIZviPUjGMlN6e09nA~Ro6wYeu2YgL3EjtFVwGBMyOq9CklRaGPQNXexq7OQzu4KktcHoVnImBdSQKulPfV7VRNqZJSkGdvkW3UbEoN18YlchUOxgFwNwkjWStHjIzHEUhc3trG8cCpRFuWl4h0FnNkF3w003~6dN0DEimgCUx5xk8zqXaP1FaL1uwSTsDJHNtreKAIaQW8t2WNLtcg7KYDs6zpg2PWfxNRT-fwJUM6KGBvydTyAJDBb~~rF66onIKRnbpA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
-//     title: "Старий будиночок у Венеції",
-//     comments: [],
-//     like: "0",
-//     location: `Italy`,
-//   },
+  {
+    id: "2",
+    uri: "https://www.dogalize.com/wp-content/uploads/2017/05/funny-cat-img.jpg",
+    title: "Захід на Чорному морі",
+    comments: [],
+    like: "0",
+    location: `Ukraine`,
+  },
+  {
+    id: "3",
+    uri: "https://www.dogalize.com/wp-content/uploads/2017/05/funny-cat-img.jpg",
+    title: "Старий будиночок у Венеції",
+    comments: [],
+    like: "0",
+    location: `Italy`,
+  },
 ];
 
 
@@ -45,10 +45,10 @@ const DATA = [
 
 
 
-export const Posts = () => {
+export const Publication = () => {
   const Item = ({ title, uri, location, comments, like, image }) => (
     <View style={styles.contentBox}>
-      <Image source={require("../assets/forest.jpg")} style={styles.imgBox} />
+      <Image source={{ uri: uri }} style={styles.imgBox} />
       <Text style={styles.namePost}>{title}</Text>
 
       <View style={styles.info}>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     bottom: 45,
   },
   imgBox: {
-    width: 380,
+    // /
     height: 240,
     borderRadius: 8,
     borderRightWidth: 1,
@@ -165,5 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 16,
   },
-  
+  contentBox: {
+    marginBottom:32
+  }
 });

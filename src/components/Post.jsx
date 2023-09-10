@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
-export const PostScreens = () => {
+export const Post = () => {
   
   return (
     <View style={styles.publick}>

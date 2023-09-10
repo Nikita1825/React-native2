@@ -12,7 +12,7 @@ import {
   FlatList,
 } from "react-native";
 import  { useState } from "react";
-import { Posts } from '../components/Posts';
+import { Publication } from '../components/Publication';
 export const ProfileScreen = ({ navigation }) => {
   const goBack = () => {
     navigation.navigate("Login");
@@ -35,7 +35,7 @@ export const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
         <Text style={styles.name}>Natali Romanova</Text>
 
-        <Posts />
+        <Publication />
       </View>
     </ImageBackground>
   );
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     paddingBottom: 45,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+    marginTop:300
   },
   avatar: {
     top: -60,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     bottom: 45
   },
   imgBox: {
-    width: 380,
+    // width: 380,
     height: 240,
     borderRadius: 8,
     borderRightWidth: 1,

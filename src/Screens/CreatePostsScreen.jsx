@@ -69,7 +69,7 @@ const [userImg, setUserImg] = useState(null)
 }
 const styles = StyleSheet.create({
   imgBox: {
-    width: 380,
+    
     height: 240,
     borderRadius: 8,
     borderRightWidth: 1,
@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     backgroundColor: "white",
     flex: 1,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection:"column"
   },
   icon: {
     width: 60,
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     bottom: 50,
   },
   input: {
-    width: 343,
+   
     height: 50,
     borderBottomWidth: 1,
     marginBottom: 16,
@@ -144,6 +147,6 @@ const styles = StyleSheet.create({
   delete
     : {
     alignItems: "center",
-      marginTop:140,
+      marginTop:"auto",
   },
 });
