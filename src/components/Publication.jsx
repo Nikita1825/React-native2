@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons"; 
+import { useNavigation } from "@react-navigation/native";
  
 const DATA = [
   {
@@ -45,14 +46,18 @@ const DATA = [
 
 
 
-export const Publication = () => {
+export const Publication = ({ onPress }) => {
+  const navigation = useNavigation();
+  const handleLocationPress = () => {
+    navigation.navigate("MapScreen");
+  };
   const Item = ({ title, uri, location, comments, like, image }) => (
     <View style={styles.contentBox}>
       <Image source={{ uri: uri }} style={styles.imgBox} />
       <Text style={styles.namePost}>{title}</Text>
 
       <View style={styles.info}>
-        <TouchableOpacity style={styles.iconComent}>
+        <TouchableOpacity style={styles.iconComent} onPress={onPress}>
           <Feather name="message-circle" size={24} color="#FF6C00" />
         </TouchableOpacity>
         <Text style={styles.number}>0</Text>
@@ -60,7 +65,7 @@ export const Publication = () => {
           <Feather name="thumbs-up" size={24} color="#FF6C00" />
         </TouchableOpacity>
         <Text style={styles.numb}>{like}</Text>
-        <TouchableOpacity style={styles.iconMap}>
+        <TouchableOpacity style={styles.iconMap} onPress={handleLocationPress}>
           <Feather name="map-pin" size={24} color="#BDBDBD" />
         </TouchableOpacity>
         <Text style={styles.text}>{location}</Text>

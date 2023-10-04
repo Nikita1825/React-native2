@@ -44,7 +44,7 @@ export default function RegistrationScreen() {
         <KeyboardAvoidingView
           style={styles.wraper}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -300}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -150}
         >
           <ImageBackground
             style={styles.container}

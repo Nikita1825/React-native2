@@ -17,6 +17,9 @@ export const ProfileScreen = ({ navigation }) => {
   const goBack = () => {
     navigation.navigate("Login");
   };
+   const onCommentsPage = () => {
+     navigation.navigate("Comments",  {location});
+   };
   return (
     <ImageBackground
       style={styles.container}
@@ -35,7 +38,7 @@ export const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
         <Text style={styles.name}>Natali Romanova</Text>
 
-        <Publication />
+        <Publication onPress={onCommentsPage}  />
       </View>
     </ImageBackground>
   );
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     paddingBottom: 45,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    marginTop:300
+    marginTop:250
   },
   avatar: {
     top: -60,
